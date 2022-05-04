@@ -1,0 +1,7 @@
+Edit File 
+
+Step 1:- If file is uploaded $filestatus = 1 else $filestatus = 0 
+
+Step 2:- if $filestatus is 1, start uploading process but first delete previous file. 
+
+if $file status is 0, so, just update normal query except filelink. 

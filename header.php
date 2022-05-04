@@ -260,6 +260,28 @@ require('connection/config.php');
                 </a>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="adduser.php" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                File Manager
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="addFile.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add File</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="managefile.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage File</p>
+                </a>
+            </ul>
+          </li>
           
         </ul>
       </nav>
