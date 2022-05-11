@@ -2,6 +2,10 @@
       if(isset($_POST['submit']))
       {
           $title = $_POST['title'];
+          $status = $_POST['radio1'];
+          $oldtitle = $_POST['oldtitle'];
+          $oldlink = $_POST['oldlink'];
+          if(isset($_FILES['image']) && $_FILES['image']['name']!=""){
           $dataFile = $_FILES['image']['name'];
             $filesize=$_FILES['image']['size'];
             $explode_values=explode('.', $dataFile);
@@ -15,11 +19,10 @@
             {
                 if($extention=="jpg" || $extention == "png" || $extention=="jpeg")
                 {
-                  if($title!=""&&$dataFile!="")
-                  {
+                    unlink('../uploads/'.$oldlink);
                     if(move_uploaded_file($_FILES['image']['tmp_name'], "../uploads/".$finalfile))
                     {
-                        $query = "INSERT INTO filemanager(title,link,ext) VALUES('$title','$finalfile','$extention')";
+                        $query = "Update filemanager set title='$title',link='$finalfile',ext='$extention',status='$status' where title='$oldtitle'";
                         $result = mysqli_query($conn,$query);
                         if($result)
                         {
@@ -34,11 +37,6 @@
                     {
                         echo "File couldn't be uploaded successfully.";
                     }
-                  }
-                  else{
-                    echo "All fields are necessary.";
-                  }
-                    
                 }
                 else 
                 {
@@ -50,5 +48,18 @@
                 echo "File size exceeded.";
             }
       }
+      else{
+        $query = "Update filemanager set title='$title',status='$status' where title='$oldtitle'";
+        $result = mysqli_query($conn,$query);
+        if($result)
+        {
+            echo header("Location: ../managefile.php?msg=success");
+        }
+        else 
+        {
+            echo "File couldn't be edited successfully.";
+        }
+      }
+    }
       ?>
       

@@ -6,7 +6,7 @@
         <div class="col-md-6">
   <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Horizontal Form</h3>
+                <h3 class="card-title">Add User Form</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

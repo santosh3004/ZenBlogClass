@@ -8,39 +8,42 @@ require('header.php');
         <div class="col-md-6">
         <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit User</h3>
+                <h3 class="card-title">Edit Menu</h3>
               </div>
               <!-- /.card-header -->
               <?php
-                $sitekey="";
-                $sitevalue="";
+                $title="";
+                $url="";
+                $order="";
                 $status=1;
-                if(isset($_GET['id'])){
-                  $id=$_GET['id'];
-                  $sql="SELECT * FROM siteconfigs WHERE id=$id";
-                  $result=mysqli_query($conn,$sql);
-                  if(mysqli_num_rows($result)>0){
-                    while($row=mysqli_fetch_assoc($result)){
-                      $sitekey=$row['sitekey'];
-                      $sitevalue=$row['sitevalue'];
-                      $status=$row['status'];
-                    }
-                  }
+                if (isset($_GET['id'])) {
+                  $getquery="select * from menus where id=".$_GET['id'];
+                  $result=mysqli_query($conn,$getquery);
+                  $menu=mysqli_fetch_assoc($result);
+                  $id=$menu['id'];
+                  $title=$menu['title'];
+                  $url=$menu['url'];
+                  $order=$menu['order_id'];
+                  $status=$menu['status'];
                 }
 
                 
               ?>
               <!-- form start -->
-              <form action="siteconfigmanagement/edit.php" method="POST" enctype="multipart/form-data">
+              <form action="menumanagement/edit.php" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Site Key</label>
-                    <input type="text" hidden name="oldsitekey" value="<?php echo $sitekey;?>">
-                    <input type="text" required value="<?php echo $sitekey;?>" name="sitekey" class="form-control" id="exampleInputEmail1" placeholder="Enter Site Key">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input type="text" hidden name="id" value="<?php echo $id;?>">
+                    <input type="text" required value="<?php echo $title;?>" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Site Value</label>
-                    <input type="text" required value="<?php echo $sitevalue;?>" name="sitevalue" class="form-control" id="exampleInputEmail1" placeholder="Enter Site Value">
+                    <label for="exampleInputEmail1">Url</label>
+                    <input type="text" required value="<?php echo $url;?>" name="url" class="form-control" id="exampleInputEmail1" placeholder="Enter Url">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Order</label>
+                    <input type="number" required value="<?php echo $order;?>" name="order" class="form-control" id="exampleInputPassword1" placeholder="Enter Order">
                   </div>
                   <div class="col-sm-6">
                       <!-- radio -->

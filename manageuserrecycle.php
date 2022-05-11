@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Users</h1>
+            <h1>Users Recycle Bin</h1>
           </div>
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -24,8 +24,8 @@
           
               <div class="card-header d-flex justify-content-end">
               <div>
-              <a href="adduser.php"><button type="button"class="btn btn-primary">Add</button></a>
-              <a href="manageuserrecycle.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a>
+              <!-- <a href="adduser.php"><button type="button"class="btn btn-primary">Add</button></a>
+              <a href="adduser.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a> -->
               </div>
                 <!-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> -->
               </div>
@@ -42,7 +42,7 @@
                   </thead>
                   <tbody>
                   <?php
-           $userquery="Select * from users where deleted_at is null";
+           $userquery="Select * from users where deleted_at is not null";
            $result=mysqli_query($conn,$userquery);
            
            while ($users=mysqli_fetch_array($result)) {
@@ -53,8 +53,9 @@
                     <td><?php echo $users['email']; ?></td>
                     <td><?php echo $users['status']; ?></td>
                     <td>
-                      <a href="edituser.php?id=<?php echo $users['id']; ?>"><button type="button"class="btn btn-info">Edit</button></a>
-                      <a href="usermanagement/softdelete.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      
+                      <a href="usermanagement/delete.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="usermanagement/recycle.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-info">Recycle</button></a>
                   </td>
                   </tr>
                   <?php } ?>

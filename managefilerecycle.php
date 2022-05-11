@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Files</h1>
+            <h1>Files Recycle Bin</h1>
           </div>
           <div class="col-sm-6">
             <!-- <ol class="breadcrumb float-sm-right">
@@ -22,11 +22,7 @@
         <div class="col-12">
         <div class="card">
           
-        <div class="card-header d-flex justify-content-end">
-              <div>
-              <a href="addFile.php"><button type="button"class="btn btn-primary">Add</button></a>
-              <a href="managefilerecycle.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a>
-              </div>
+              <div class="card-header">
                 <!-- <h3 class="card-title">DataTable with Files &amp; hover style</h3> -->
               </div>
               <!-- /.card-header -->
@@ -43,7 +39,7 @@
                   </thead>
                   <tbody>
                   <?php
-              $query = "SELECT * FROM filemanager where deleted_at is null";
+              $query = "SELECT * FROM filemanager where deleted_at is not null";
               $result = mysqli_query($conn,$query);
               while($data=mysqli_fetch_array($result))
               {
@@ -55,8 +51,9 @@
                     </td>
                     <td><?php echo $data['status']; ?></td>
                     <td>
-                    <a href="editfile.php?id=<?php echo $data['id']; ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="addfile/softdelete.php?id=<?php echo $data['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                    
+                      <a href="addfile/delete.php?id=<?php echo $data['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="addfile/recycle.php?id=<?php echo $data['id']; ?>"><button type="button" class="btn btn-info">Restore</button></a>
                   </td>
                   </tr>
                   <?php } ?>

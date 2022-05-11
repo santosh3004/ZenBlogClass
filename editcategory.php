@@ -32,11 +32,11 @@ require('header.php');
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
                     <input type="text" hidden name="oldtitle" value="<?php echo $title;?>">
-                    <input type="text" required value="<?php echo $title;?>" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
+                    <input type="text" required value="<?php echo $title;?>" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Slug</label>
-                    <input type="text" required value="<?php echo $slug;?>" name="slug" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input type="text" required value="<?php echo $slug;?>" name="slug" class="form-control" id="exampleInputEmail1" placeholder="Enter Slug Text">
                   </div>
                   <div class="col-sm-6">
                       <!-- radio -->

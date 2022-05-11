@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Users</h1>
+            <h1>Menus Recycle Bin</h1>
           </div>
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,38 +23,41 @@
         <div class="card">
           
               <div class="card-header d-flex justify-content-end">
-              <div>
-              <a href="adduser.php"><button type="button"class="btn btn-primary">Add</button></a>
-              <a href="manageuserrecycle.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a>
-              </div>
+              <!-- <div>
+              <a href="addMenu.php"><button type="button"class="btn btn-primary">Add</button></a>
+              <a href="managemenurecycle.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a>
+              </div> -->
                 <!-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> -->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-responsive table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-repsonsive table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                   <thead>
                   <tr>
-                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Name</th>
-                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Title</th>
+                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Url</th>
+                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Order</th>
                   <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
                   <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Actions</th>
                 </tr>
                   </thead>
                   <tbody>
                   <?php
-           $userquery="Select * from users where deleted_at is null";
+           $userquery="Select * from menus where deleted_at is not null";
            $result=mysqli_query($conn,$userquery);
            
            while ($users=mysqli_fetch_array($result)) {
              
           ?>
                   <tr class="odd">
-                    <td class="dtr-control sorting_1" tabindex="0"><?php echo $users['name']; ?></td>
-                    <td><?php echo $users['email']; ?></td>
+                    <td class="dtr-control sorting_1" tabindex="0"><?php echo $users['title']; ?></td>
+                    <td><?php echo $users['url']; ?></td>
+                    <td><?php echo $users['order_id']; ?></td>
                     <td><?php echo $users['status']; ?></td>
                     <td>
-                      <a href="edituser.php?id=<?php echo $users['id']; ?>"><button type="button"class="btn btn-info">Edit</button></a>
-                      <a href="usermanagement/softdelete.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      
+                      <a href="menumanagement/softdelete.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="menumanagement/recycle.php?id=<?php echo $users['id']; ?>"><button type="button" class="btn btn-info">Recycle</button></a>
                   </td>
                   </tr>
                   <?php } ?>

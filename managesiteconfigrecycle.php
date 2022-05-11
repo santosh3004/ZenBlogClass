@@ -5,14 +5,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Site Configs</h1>
+            <h1>Site Configs Recycle</h1>
           </div>
-          <!-- <div class="col-sm-6">
+          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item"><a href="managesiteconfig.php">Site Configs</a></li>
             </ol>
-          </div> -->
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -22,13 +21,9 @@
         <div class="col-12">
         <div class="card">
           
-        <div class="card-header d-flex justify-content-end">
-              <div>
-              <a href="addSiteConfig.php"><button type="button"class="btn btn-primary">Add</button></a>
-              <a href="managesiteconfigrecycle.php"><button type="button"class="btn btn-info"><i class="fa-solid fa-recycle"></i></button></a>
-              </div>
-                <!-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> -->
-              </div>
+              <!-- <div class="card-header">
+                <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+              </div> -->
               <!-- /.card-header -->
               <div class="card-body">
                 <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-responsive table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
@@ -42,7 +37,7 @@
                   </thead>
                   <tbody>
                   <?php
-           $scquery="Select * from siteconfigs where deleted_at is null";
+           $scquery="Select * from siteconfigs where deleted_at is not null";
            $result=mysqli_query($conn,$scquery);
            
            while ($scs=mysqli_fetch_array($result)) {
@@ -53,8 +48,8 @@
                     <td><?php echo $scs['sitevalue']; ?></td>
                     <td><?php echo $scs['status']; ?></td>
                     <td>
-                      <a href="editsiteconfig.php?id=<?php echo $scs['id']; ?>"><button type="button"class="btn btn-info">Edit</button></a>
-                      <a href="siteconfigmanagement/softdelete.php?id=<?php echo $scs['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="siteconfigmanagement/delete.php?id=<?php echo $scs['id']; ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="siteconfigmanagement/recycle.php?id=<?php echo $scs['id']; ?>"><button type="button" class="btn btn-info">Restore</button></a>
                   </td>
                   </tr>
                   <?php } ?>
